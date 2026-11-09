@@ -299,7 +299,7 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 	<div class="container booking__grid">
 		<div class="booking__intro">
 			<h2 class="section-title" id="booking-title">Запишитесь на приём</h2>
-			<p class="section-lead">Оставьте телефон — администратор перезвонит, подберёт врача и удобное время. Первая консультация бесплатно.</p>
+			<p class="section-lead">Онлайн за минуту: выберите услугу, врача и удобное время — администратор подтвердит запись звонком. Первая консультация бесплатно.</p>
 
 			<ul class="contact-list">
 				<li>
@@ -315,40 +315,141 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 		</div>
 
 		<div class="booking__form">
-				<form class="booking-form" method="post" action="/stail-s-demo/wp-admin/admin-post.php" id="booking-main">
-				<input type="hidden" name="action" value="stail_booking">
-		<input type="hidden" id="stail_booking_nonce" name="stail_booking_nonce" value="30ba98d837" /><input type="hidden" name="_wp_http_referer" value="/" />		<div class="field">
-			<label for="booking-main-name">Имя</label>
-			<input id="booking-main-name" name="name" type="text" autocomplete="name" required maxlength="80">
+				<form class="booking-form wizard" method="post" action="/stail-s-demo/wp-admin/admin-post.php" id="booking-main"
+		data-hours="{&quot;wd&quot;:[9,21],&quot;we&quot;:[10,19]}" data-demo="1" data-demo-busy="1" novalidate>
+
+		
+		<ol class="wizard__progress" aria-hidden="true">
+			<li class="is-active">Услуга</li>
+			<li>Врач</li>
+			<li>Время</li>
+			<li>Контакты</li>
+		</ol>
+
+		<input type="hidden" name="action" value="stail_booking">
+		<input type="hidden" id="stail_booking_nonce" name="stail_booking_nonce" value="30ba98d837" /><input type="hidden" name="_wp_http_referer" value="/" />
+		<fieldset class="wizard__step is-active" data-step="1">
+			<legend class="wizard__title">С чем вы к нам?</legend>
+			<div class="choice-list">
+				<label class="choice">
+					<input type="radio" name="reason" value="Консультация" checked>
+					<span class="choice__body"><span class="choice__name">Консультация и осмотр</span><span class="choice__meta">Бесплатно</span></span>
+				</label>
+														<label class="choice">
+						<input type="radio" name="reason" value="Лечение кариеса и терапия">
+						<span class="choice__body"><span class="choice__name">Лечение кариеса и терапия</span><span class="choice__meta">от 3 500 ₽</span></span>
+					</label>
+														<label class="choice">
+						<input type="radio" name="reason" value="Имплантация зубов">
+						<span class="choice__body"><span class="choice__name">Имплантация зубов</span><span class="choice__meta">от 35 000 ₽</span></span>
+					</label>
+														<label class="choice">
+						<input type="radio" name="reason" value="Протезирование">
+						<span class="choice__body"><span class="choice__name">Протезирование</span><span class="choice__meta">от 18 000 ₽</span></span>
+					</label>
+														<label class="choice">
+						<input type="radio" name="reason" value="Исправление прикуса">
+						<span class="choice__body"><span class="choice__name">Исправление прикуса</span><span class="choice__meta">от 45 000 ₽</span></span>
+					</label>
+														<label class="choice">
+						<input type="radio" name="reason" value="Хирургия и удаление">
+						<span class="choice__body"><span class="choice__name">Хирургия и удаление</span><span class="choice__meta">от 2 500 ₽</span></span>
+					</label>
+														<label class="choice">
+						<input type="radio" name="reason" value="Гигиена и отбеливание">
+						<span class="choice__body"><span class="choice__name">Гигиена и отбеливание</span><span class="choice__meta">от 5 500 ₽</span></span>
+					</label>
+														<label class="choice">
+						<input type="radio" name="reason" value="Лечение дёсен">
+						<span class="choice__body"><span class="choice__name">Лечение дёсен</span><span class="choice__meta">от 3 000 ₽</span></span>
+					</label>
+								<label class="choice choice--urgent">
+					<input type="radio" name="reason" value="Острая боль">
+					<span class="choice__body"><span class="choice__name">Острая боль</span><span class="choice__meta">Примем в ближайшее время</span></span>
+				</label>
+			</div>
+		</fieldset>
+
+		<fieldset class="wizard__step" data-step="2">
+			<legend class="wizard__title">Выберите врача</legend>
+			<div class="choice-list choice-list--doctors">
+				<label class="choice choice--doctor">
+					<input type="radio" name="doctor" value="" data-name="Любой врач" checked>
+					<span class="choice__avatar choice__avatar--any" aria-hidden="true">?</span>
+					<span class="choice__body"><span class="choice__name">Любой врач</span><span class="choice__meta">Подберём по вашей задаче</span></span>
+				</label>
+									<label class="choice choice--doctor">
+						<input type="radio" name="doctor" value="11" data-name="Гудкова Анна Александровна">
+						<span class="choice__avatar photo"><span class="photo__initials" aria-hidden="true">ГА</span><img src="https://stail-s.ru/wp-content/uploads/2025/08/gudkova.jpg" alt="Гудкова Анна Александровна" loading="lazy" onerror="this.remove()"></span>
+						<span class="choice__body"><span class="choice__name">Гудкова Анна Александровна</span><span class="choice__meta">Главный врач, стоматолог-терапевт, ортодонт</span></span>
+					</label>
+									<label class="choice choice--doctor">
+						<input type="radio" name="doctor" value="12" data-name="Петухов Иван Ильич">
+						<span class="choice__avatar photo"><span class="photo__initials" aria-hidden="true">ПИ</span><img src="https://stail-s.ru/wp-content/uploads/2025/08/petuhov.jpg" alt="Петухов Иван Ильич" loading="lazy" onerror="this.remove()"></span>
+						<span class="choice__body"><span class="choice__name">Петухов Иван Ильич</span><span class="choice__meta">Стоматолог-ортопед, гнатолог</span></span>
+					</label>
+									<label class="choice choice--doctor">
+						<input type="radio" name="doctor" value="13" data-name="Петров Игорь Евгеньевич">
+						<span class="choice__avatar photo"><span class="photo__initials" aria-hidden="true">ПИ</span><img src="https://stail-s.ru/wp-content/uploads/2025/07/petrov-300x300.jpg" alt="Петров Игорь Евгеньевич" loading="lazy" onerror="this.remove()"></span>
+						<span class="choice__body"><span class="choice__name">Петров Игорь Евгеньевич</span><span class="choice__meta">Стоматолог-хирург, имплантолог</span></span>
+					</label>
+									<label class="choice choice--doctor">
+						<input type="radio" name="doctor" value="14" data-name="Эйчис Вероника Юрьевна">
+						<span class="choice__avatar photo"><span class="photo__initials" aria-hidden="true">ЭВ</span><img src="https://stail-s.ru/wp-content/uploads/2025/07/jejchis-300x300.jpeg" alt="Эйчис Вероника Юрьевна" loading="lazy" onerror="this.remove()"></span>
+						<span class="choice__body"><span class="choice__name">Эйчис Вероника Юрьевна</span><span class="choice__meta">Стоматолог-терапевт</span></span>
+					</label>
+							</div>
+		</fieldset>
+
+		<fieldset class="wizard__step" data-step="3">
+			<legend class="wizard__title">Удобный день и время</legend>
+			<div class="days" role="group" aria-label="День"></div>
+			<div class="slots" role="group" aria-label="Время"></div>
+			<p class="wizard__hint">Администратор позвонит и подтвердит время.</p>
+			<input type="hidden" name="date" value="">
+			<input type="hidden" name="time" value="">
+		</fieldset>
+
+		<fieldset class="wizard__step" data-step="4">
+			<legend class="wizard__title">Ваши контакты</legend>
+			<dl class="summary"></dl>
+			<div class="field">
+				<label for="booking-main-name">Имя</label>
+				<input id="booking-main-name" name="name" type="text" autocomplete="name" required maxlength="80">
+			</div>
+			<div class="field">
+				<label for="booking-main-phone">Телефон</label>
+				<input id="booking-main-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+7 (___) ___-__-__" maxlength="24">
+			</div>
+			<div class="field">
+				<label for="booking-main-comment">Комментарий <span class="field__opt">— необязательно</span></label>
+				<input id="booking-main-comment" name="comment" type="text" maxlength="300" placeholder="Например: болит зуб справа сверху">
+			</div>
+			<div class="field field--trap" aria-hidden="true">
+				<label for="booking-main-site">Сайт</label>
+				<input id="booking-main-site" name="site" type="text" tabindex="-1" autocomplete="off">
+			</div>
+			<label class="consent">
+				<input type="checkbox" name="consent" value="1" required>
+				<span>Согласен на обработку персональных данных по <a href="/stail-s-demo/politika/">политике конфиденциальности</a></span>
+			</label>
+			<p class="wizard__error" role="alert" hidden></p>
+		</fieldset>
+
+		<div class="wizard__nav">
+			<button class="btn btn--ghost wizard__back" type="button" hidden>Назад</button>
+			<button class="btn btn--primary wizard__next" type="button">Далее</button>
+			<button class="btn btn--primary wizard__submit" type="submit">Записаться</button>
 		</div>
-		<div class="field">
-			<label for="booking-main-phone">Телефон</label>
-			<input id="booking-main-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+7" maxlength="24">
+
+		<div class="wizard__done" hidden>
+			<span class="wizard__check" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+			<p class="wizard__done-title">Вы записаны</p>
+			<dl class="summary summary--done"></dl>
+			<p class="wizard__done-text">Администратор позвонит вам, чтобы подтвердить время. Если планы изменятся — звоните: <a href="tel:+74957771021">+7 (495) 777-10-21</a></p>
+			<p class="wizard__demo-note" hidden>Демо-версия: заявка никуда не отправлена.</p>
+			<button class="btn btn--ghost wizard__again" type="button">Записаться ещё раз</button>
 		</div>
-		<div class="field">
-			<label for="booking-main-reason">С чем обращаетесь</label>
-			<select id="booking-main-reason" name="reason">
-				<option value="Бесплатная консультация">Бесплатная консультация</option>
-									<option value="Лечение кариеса и терапия">Лечение кариеса и терапия</option>
-									<option value="Имплантация зубов">Имплантация зубов</option>
-									<option value="Протезирование">Протезирование</option>
-									<option value="Исправление прикуса">Исправление прикуса</option>
-									<option value="Хирургия и удаление">Хирургия и удаление</option>
-									<option value="Гигиена и отбеливание">Гигиена и отбеливание</option>
-									<option value="Лечение дёсен">Лечение дёсен</option>
-								<option value="Острая боль">Острая боль — нужно сегодня</option>
-			</select>
-		</div>
-		<div class="field field--trap" aria-hidden="true">
-			<label for="booking-main-site">Сайт</label>
-			<input id="booking-main-site" name="site" type="text" tabindex="-1" autocomplete="off">
-		</div>
-		<label class="consent">
-			<input type="checkbox" name="consent" value="1" required>
-			<span>Согласен на обработку персональных данных по <a href="/stail-s-demo/politika/">политике конфиденциальности</a></span>
-		</label>
-		<button class="btn btn--primary btn--block" type="submit">Записаться</button>
-		<p class="form-small">Перезвоним в рабочее время: Пн–Пт 9:00–21:00, Сб–Вс 10:00–19:00.</p>
 	</form>
 			</div>
 	</div>
@@ -409,16 +510,6 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </div>
 
 <script data-wp-strategy="defer" defer id="stail-main-js" src="/stail-s-demo/wp-content/themes/stail/assets/js/main.js"></script>
-<script>
-document.addEventListener('submit', function (e) {
-  if (!e.target.classList.contains('booking-form')) return;
-  e.preventDefault();
-  var n = e.target.querySelector('.form-note');
-  if (!n) { n = document.createElement('p'); e.target.prepend(n); }
-  n.className = 'form-note form-note--ok';
-  n.textContent = 'Это демо-версия сайта. В рабочей версии заявка сразу придёт администратору клиники.';
-  n.scrollIntoView({ block: 'center', behavior: 'smooth' });
-});
-</script>
+<script data-wp-strategy="defer" defer id="stail-booking-js" src="/stail-s-demo/wp-content/themes/stail/assets/js/booking.js"></script>
 </body>
 </html>

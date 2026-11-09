@@ -74,8 +74,9 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 	<section class="page-hero">
 		<div class="container">
 			<h1 class="page-title">Гигиена и отбеливание</h1>
-							<p class="page-price">от 5 500 ₽ <a href="/stail-s-demo/zeni/">Подробный прайс</a></p>
-					</div>
+							<p class="page-price"><span>от 5 500 ₽</span> <a href="/stail-s-demo/zeni/">Подробный прайс</a></p>
+						<p class="page-actions"><a class="btn btn--primary" href="/stail-s-demo/?service=Гигиена%20и%20отбеливание#booking">Записаться на услугу</a></p>
+		</div>
 	</section>
 	<section class="section section--tight">
 		<div class="container entry">
@@ -144,16 +145,6 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 </div>
 
 <script data-wp-strategy="defer" defer id="stail-main-js" src="/stail-s-demo/wp-content/themes/stail/assets/js/main.js"></script>
-<script>
-document.addEventListener('submit', function (e) {
-  if (!e.target.classList.contains('booking-form')) return;
-  e.preventDefault();
-  var n = e.target.querySelector('.form-note');
-  if (!n) { n = document.createElement('p'); e.target.prepend(n); }
-  n.className = 'form-note form-note--ok';
-  n.textContent = 'Это демо-версия сайта. В рабочей версии заявка сразу придёт администратору клиники.';
-  n.scrollIntoView({ block: 'center', behavior: 'smooth' });
-});
-</script>
+<script data-wp-strategy="defer" defer id="stail-booking-js" src="/stail-s-demo/wp-content/themes/stail/assets/js/booking.js"></script>
 </body>
 </html>
