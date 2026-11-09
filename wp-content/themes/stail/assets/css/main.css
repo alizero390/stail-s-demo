@@ -385,12 +385,17 @@ p:last-child { margin-bottom: 0; }
 	.nav-open .nav-toggle__open { display: none; }
 	.nav-open .nav-toggle__close { display: block; }
 
+	/* backdrop-filter would make the header the containing block of the fixed menu and clip it */
+	.site-header { backdrop-filter: none; background: var(--surface); }
+	.site-header__actions { margin-left: auto; gap: 10px; }
 	.site-nav {
-		position: fixed; inset: var(--header-h) 0 0 0; margin: 0; padding: 12px var(--gutter) 120px;
-		background: var(--surface); overflow-y: auto; display: none;
+		position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0; z-index: 70;
+		height: calc(100dvh - var(--header-h)); margin: 0; padding: 8px var(--gutter) 40px;
+		background: var(--surface); overflow-y: auto; overscroll-behavior: contain; display: none;
 	}
 	.nav-open .site-nav { display: block; }
 	.nav-open { overflow: hidden; }
+	.nav-open .mobile-bar { display: none; }
 	.site-nav__list { flex-direction: column; gap: 0; }
 	.site-nav__list a { padding: 16px 0; font: 600 32px/1.1 var(--serif); color: var(--navy); border-bottom: 1px solid var(--line); }
 	.site-nav__list a::after { display: none; }
@@ -398,6 +403,7 @@ p:last-child { margin-bottom: 0; }
 	.site-nav__list .sub-menu a { font-size: 22px; }
 	.site-nav__extra { display: block; margin-top: 28px; color: var(--muted); font-size: 15px; }
 	.site-nav__phone { display: block; margin-bottom: 8px; font-size: 22px; font-weight: 700; text-decoration: none; }
+	.site-nav__book { margin-top: 24px; color: #fff; }
 
 	.hero::before { width: 100%; height: 42%; top: auto; bottom: 0; }
 	.hero__grid, .booking__grid, .doctor-page__grid { grid-template-columns: 1fr; }
