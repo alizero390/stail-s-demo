@@ -1,0 +1,36 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/wp-admin/",
+  "preferredVersions": {
+    "php": "8.3",
+    "wp": "latest"
+  },
+  "features": {
+    "networking": true
+  },
+  "login": true,
+  "steps": [
+    {
+      "step": "setSiteLanguage",
+      "language": "ru_RU"
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "Стайл-С",
+        "permalink_structure": "/%postname%/",
+        "blog_public": "0"
+      }
+    },
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "url",
+        "url": "https://alizero390.github.io/stail-s-demo/stail-theme.zip"
+      },
+      "options": {
+        "activate": true
+      }
+    }
+  ]
+}
